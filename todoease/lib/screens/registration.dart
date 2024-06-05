@@ -18,13 +18,13 @@ class _RegistrationState extends State<Registration> {
 
   void registerUser() async {
     if (passwordController.text.isNotEmpty && emailController.text.isNotEmpty) {
-      var resBody = {
+      var reqBody = {
         "email": emailController.text,
         "password": passwordController.text,
       };
 
       var response = await http.post(Uri.parse(registration),
-          body: jsonEncode(resBody),
+          body: jsonEncode(reqBody),
           headers: {"Content-Type": "application/json"});
 
       var jsonResponse = jsonDecode(response.body);
