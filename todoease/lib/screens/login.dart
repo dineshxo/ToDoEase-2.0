@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todoease/config/config.dart';
 import 'dart:convert';
 
 import 'package:todoease/screens/home.dart';
+import 'package:todoease/screens/registration.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -48,7 +50,11 @@ class _LoginState extends State<Login> {
         var jwtToken = jsonResponse['token'];
         prefs.setString('token', jwtToken);
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const Home()));
+            context,
+            MaterialPageRoute(
+                builder: (context) => Home(
+                      token: jwtToken,
+                    )));
       } else {
         print('Login unsuccessful.');
       }
@@ -70,6 +76,18 @@ class _LoginState extends State<Login> {
           TextField(
             controller: passwordController,
             decoration: const InputDecoration(hintText: "password"),
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          TextButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Registration()));
+              },
+              child: const Text("Already have an Account")),
+          const SizedBox(
+            height: 30,
           ),
           ElevatedButton(
               onPressed: () {

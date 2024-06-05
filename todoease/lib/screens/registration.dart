@@ -56,6 +56,18 @@ class _RegistrationState extends State<Registration> {
             controller: passwordController,
             decoration: const InputDecoration(hintText: "password"),
           ),
+          const SizedBox(
+            height: 30,
+          ),
+          TextButton(
+              onPressed: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Login()));
+              },
+              child: const Text("Already have an Account")),
+          const SizedBox(
+            height: 30,
+          ),
           ElevatedButton(
               onPressed: () {
                 registerUser();
