@@ -17,7 +17,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  final String? token; // Allow token to be nullable
+  final String? token;
   const MyApp({super.key, this.token});
 
   // This widget is the root of your application.

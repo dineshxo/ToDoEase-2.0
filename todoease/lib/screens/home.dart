@@ -6,9 +6,9 @@ import 'dart:convert';
 import 'package:todoease/config/config.dart';
 
 class Home extends StatefulWidget {
-  final token;
+  final String token;
 
-  const Home({super.key, @required this.token});
+  const Home({super.key, required this.token});
 
   @override
   State<Home> createState() => _HomeState();
@@ -21,11 +21,18 @@ class _HomeState extends State<Home> {
 
   void newTodo() async {
     if (titleController.text.isNotEmpty) {
+      if (userId.isEmpty) {
+        print('User ID is not set.');
+        return;
+      }
+
       var reqBody = {
-        "userID": userId,
+        "userId": userId,
         "title": titleController.text,
         "isDone": false,
       };
+
+      print('Request Body: $reqBody');
 
       var response = await http.post(Uri.parse(createTodo),
           body: jsonEncode(reqBody),
@@ -33,23 +40,29 @@ class _HomeState extends State<Home> {
 
       var jsonResponse = jsonDecode(response.body);
 
-      print(jsonResponse['status']);
+      print('Response Status: ${jsonResponse['status']}');
 
       if (jsonResponse['status']) {
+        titleController.clear();
         // Navigator.push(
         //     context, MaterialPageRoute(builder: (context) => const Login()));
       } else {
         print('Registration unsuccessful.');
       }
-    } else {}
+    } else {
+      print('Title is empty.');
+    }
   }
 
   @override
   void initState() {
     super.initState();
     Map<String, dynamic> jwtDecodedToken = JwtDecoder.decode(widget.token);
-    email = jwtDecodedToken['email'];
-    userId = jwtDecodedToken['_id'];
+    email = jwtDecodedToken['email'] ?? '';
+    userId = jwtDecodedToken['_id'] ?? '';
+
+    print('Email: $email');
+    print('User ID: $userId');
   }
 
   @override
@@ -86,6 +99,7 @@ class _HomeState extends State<Home> {
                 ElevatedButton(
                     onPressed: () {
                       newTodo();
+                      Navigator.of(context).pop();
                     },
                     child: const Text("Add"))
               ],
