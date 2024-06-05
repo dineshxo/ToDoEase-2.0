@@ -32,7 +32,7 @@ userSchema.methods.comparePassword = async function (userPassword) {
     const isMatch = await bcrypt.compare(userPassword, this.password);
     return isMatch;
   } catch (error) {
-    throw err;
+    throw error;
   }
 };
 

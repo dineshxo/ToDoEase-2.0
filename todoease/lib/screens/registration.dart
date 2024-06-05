@@ -33,7 +33,7 @@ class _RegistrationState extends State<Registration> {
 
       if (jsonResponse['status']) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Login()));
+            context, MaterialPageRoute(builder: (context) => const Login()));
       } else {
         print('Registration unsuccessful.');
       }
