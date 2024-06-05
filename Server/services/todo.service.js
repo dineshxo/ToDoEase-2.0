@@ -10,6 +10,14 @@ class TodoServices {
     await newTodo.save();
     return newTodo;
   }
+
+  static async getTodo(userId) {
+    const todoList = await Todo.find({
+      userId,
+    });
+
+    return todoList;
+  }
 }
 
 module.exports = TodoServices;
