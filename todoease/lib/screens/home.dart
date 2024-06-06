@@ -130,6 +130,7 @@ class _HomeState extends State<Home> {
         leading: const Icon(
           Icons.menu_sharp,
           size: 30,
+          color: Colors.orange,
         ),
         actions: [
           IconButton(
@@ -139,6 +140,7 @@ class _HomeState extends State<Home> {
               icon: const Icon(
                 Icons.logout_outlined,
                 size: 30,
+                color: Colors.orange,
               ))
         ],
       ),

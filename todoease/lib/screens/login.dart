@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todoease/config/config.dart';
+import 'package:todoease/constants/styles.dart';
 import 'dart:convert';
 
 import 'package:todoease/screens/home.dart';
@@ -64,37 +65,95 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Log In"),
-      ),
-      body: Column(
-        children: [
-          TextField(
-            controller: emailController,
-            decoration: const InputDecoration(hintText: "email"),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(
+                height: 50,
+              ),
+              Text(
+                "Welcome Back !",
+                style: TextStyle(
+                    color: Colors.orange[800],
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                "Let's continue where you left off.",
+                style: TextStyle(
+                    color: const Color.fromARGB(255, 97, 97, 97),
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              TextField(
+                controller: emailController,
+                decoration: textFieldDecoration,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextField(
+                controller: passwordController,
+                obscureText: true,
+                decoration: textFieldDecoration.copyWith(hintText: "Password"),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Registration()));
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "Create Account",
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.w600),
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.orange[800],
+                      )
+                    ],
+                  )),
+              const SizedBox(
+                height: 30,
+              ),
+              ElevatedButton(
+                style: elevatedButtonStyle,
+                onPressed: () {
+                  loginUser();
+                },
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text("Log in", style: buttonText),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.white,
+                      size: 20,
+                    )
+                  ],
+                ),
+              )
+            ],
           ),
-          TextField(
-            controller: passwordController,
-            decoration: const InputDecoration(hintText: "password"),
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          TextButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Registration()));
-              },
-              child: const Text("Create Account")),
-          const SizedBox(
-            height: 30,
-          ),
-          ElevatedButton(
-              onPressed: () {
-                loginUser();
-              },
-              child: const Text("Log In"))
-        ],
+        ),
       ),
     );
   }
