@@ -85,7 +85,7 @@ class _LoginState extends State<Login> {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => Registration()));
               },
-              child: const Text("Already have an Account")),
+              child: const Text("Create Account")),
           const SizedBox(
             height: 30,
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todoease/screens/home.dart';
@@ -28,9 +29,11 @@ class MyApp extends StatelessWidget {
       title: 'ToDoEase',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+          textTheme: GoogleFonts.ralewayTextTheme(), // textTheme
+          fontFamily: GoogleFonts.raleway().fontFamily,
+          primaryColor: Colors.amber,
+          primarySwatch: Colors.amber,
+          useMaterial3: true),
       home: isTokenValid ? Home(token: token!) : const Registration(),
     );
   }
