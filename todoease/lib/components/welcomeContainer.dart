@@ -21,14 +21,14 @@ class WelcomeContainer extends StatelessWidget {
               Text(
                 'Hello!',
                 style: TextStyle(
-                    fontSize: 35,
+                    fontSize: 40,
                     color: Colors.orange[800],
                     fontWeight: FontWeight.bold),
               ),
               Text(
                 userName,
                 style:
-                    const TextStyle(fontSize: 15, fontWeight: FontWeight.w300),
+                    const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
               )
             ],
           ),
