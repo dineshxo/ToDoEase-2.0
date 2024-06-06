@@ -1,5 +1,7 @@
-final url = "http://192.168.1.153:3000";
-final registration = url + '/registration';
-final login = url + '/login';
+const url = "http://192.168.1.153:3000";
+const registration = '$url/registration';
+const login = '$url/login';
 
-final createTodo = url + '/newTodo';
+const createTodo = '$url/newTodo';
+const getTodoData = '$url/getTodo';
+const deleteTodoData = '$url/deleteTodo';

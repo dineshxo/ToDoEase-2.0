@@ -19,3 +19,13 @@ exports.getTodo = async (req, res, next) => {
     throw error;
   }
 };
+
+exports.deleteTodo = async (req, res, next) => {
+  try {
+    const { id } = req.body;
+    let deleted = await todoServices.deleteTodo(id);
+    res.json({ status: true, success: deleted });
+  } catch (error) {
+    throw error;
+  }
+};

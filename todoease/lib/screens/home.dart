@@ -17,6 +17,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   late String email;
   late String userId;
+  List? todoitems;
   TextEditingController titleController = TextEditingController();
 
   void newTodo() async {
@@ -54,6 +55,43 @@ class _HomeState extends State<Home> {
     }
   }
 
+  void getTodoList(userId) async {
+    var reqBody = {
+      "userId": userId,
+    };
+
+    print('Request Body: $reqBody');
+
+    var response = await http.post(Uri.parse(getTodoData),
+        body: jsonEncode(reqBody),
+        headers: {"Content-Type": "application/json"});
+
+    var jsonResponse = jsonDecode(response.body);
+
+    print('Response Status: ${jsonResponse['status']}');
+    todoitems = jsonResponse['status'];
+  }
+
+  void deleteTodo(id) async {
+    var reqBody = {
+      "id": id,
+    };
+
+    print('Request Body: $reqBody');
+
+    var response = await http.post(Uri.parse(deleteTodoData),
+        body: jsonEncode(reqBody),
+        headers: {"Content-Type": "application/json"});
+
+    var jsonResponse = jsonDecode(response.body);
+
+    print('Response Status: ${jsonResponse['status']}');
+
+    if (jsonResponse['status']) {
+      getTodoList(userId);
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -63,6 +101,7 @@ class _HomeState extends State<Home> {
 
     print('Email: $email');
     print('User ID: $userId');
+    getTodoList(userId);
   }
 
   @override

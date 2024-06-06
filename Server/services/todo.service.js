@@ -18,6 +18,12 @@ class TodoServices {
 
     return todoList;
   }
+
+  static async deleteTodo(id) {
+    const deleteTodo = await Todo.findOneAndDelete({ _id: id });
+
+    return deleteTodo;
+  }
 }
 
 module.exports = TodoServices;
