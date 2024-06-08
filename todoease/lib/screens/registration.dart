@@ -70,17 +70,22 @@ class _RegistrationState extends State<Registration> {
               const SizedBox(
                 height: 20,
               ),
-              TextField(
-                controller: emailController,
-                decoration: textFieldDecoration,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              TextField(
-                controller: passwordController,
-                obscureText: true,
-                decoration: textFieldDecoration.copyWith(hintText: "Password"),
+              Column(
+                children: [
+                  TextField(
+                    controller: emailController,
+                    decoration: textFieldDecoration,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                    controller: passwordController,
+                    obscureText: true,
+                    decoration:
+                        textFieldDecoration.copyWith(hintText: "Password"),
+                  ),
+                ],
               ),
               const SizedBox(
                 height: 30,

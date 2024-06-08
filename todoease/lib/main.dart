@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todoease/screens/home.dart';
+import 'package:todoease/screens/login.dart';
 
 import 'package:todoease/screens/registration.dart';
 
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.amber,
           primarySwatch: Colors.amber,
           useMaterial3: true),
-      home: isTokenValid ? Home(token: token!) : const Registration(),
+      home: isTokenValid ? Home(token: token!) : const Login(),
     );
   }
 }
