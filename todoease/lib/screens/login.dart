@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:jwt_decoder/jwt_decoder.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todoease/config/config.dart';
 import 'package:todoease/constants/styles.dart';
@@ -111,7 +111,7 @@ class _LoginState extends State<Login> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => Registration()));
+                            builder: (context) => const Registration()));
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
