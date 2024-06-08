@@ -18,24 +18,27 @@ exports.login = async (req, res, next) => {
     const user = await UserService.checkUser(email);
 
     if (!user) {
-      throw new Error("User do not exist. Please Register.");
-    } else {
-      const isMatch = user.comparePassword(password);
-
-      if (isMatch === false) {
-        throw new Error("Invalid Password.");
-      } else {
-        let tokenData = { _id: user._id, email: user.email };
-        const token = await UserService.generateToken(
-          tokenData,
-          "todoease",
-          "1h"
-        );
-
-        res.status(200).json({ status: true, token: token });
-      }
+      return res
+        .status(404)
+        .json({
+          status: false,
+          message: "User does not exist. Please register.",
+        });
     }
+
+    const isMatch = await user.comparePassword(password);
+
+    if (!isMatch) {
+      return res
+        .status(401)
+        .json({ status: false, message: "Invalid Password." });
+    }
+
+    let tokenData = { _id: user._id, email: user.email };
+    const token = await UserService.generateToken(tokenData, "todoease", "1h");
+
+    res.status(200).json({ status: true, token: token });
   } catch (err) {
-    throw err;
+    res.status(500).json({ status: false, message: err.message });
   }
 };
