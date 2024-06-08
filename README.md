@@ -45,6 +45,8 @@ Screens:
 Home: Displays the list of tasks and allows users to mark tasks as completed.
 Login: Provides a form for users to log in.
 Registration: Allows new users to create an account.
+
+
 Backend (Node.js/Express):
 
 server.js: Entry point for the backend server.
