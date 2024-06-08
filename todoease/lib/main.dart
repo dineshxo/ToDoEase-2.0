@@ -12,6 +12,8 @@ void main() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
 
   String? token = prefs.getString('token');
+  print(
+      'Retrieved token from SharedPreferences: $token'); // Add this line to print the retrieved token
 
   runApp(MyApp(
     token: token,

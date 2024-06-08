@@ -88,12 +88,24 @@ class _ToDoListState extends State<ToDoList> {
                           fontSize: 15, fontWeight: FontWeight.bold),
                     ),
                     leading: Checkbox(
-                        value: widget.todoItems[index]['isDone'],
-                        onChanged: (bool? value) {
-                          setState(() {
-                            widget.todoItems[index]['isDone'] = value!;
-                          });
-                        }),
+                      value: widget.todoItems[index]['isDone'],
+                      onChanged: (bool? value) {
+                        setState(() {
+                          widget.todoItems[index]['isDone'] = value!;
+                        });
+                      },
+                      checkColor: Colors.green, // Green color for the tick
+                      fillColor: WidgetStateProperty.resolveWith<Color>(
+                        (Set<WidgetState> states) {
+                          // Set the fill color to white when the checkbox is not checked
+                          if (states.contains(WidgetState.selected)) {
+                            return Colors.white;
+                          }
+                          return Colors
+                              .transparent; // Transparent fill color when the checkbox is not checked
+                        },
+                      ),
+                    ),
                   ),
                 ),
               );
