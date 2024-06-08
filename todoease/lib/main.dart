@@ -1,3 +1,5 @@
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
@@ -7,17 +9,32 @@ import 'package:todoease/screens/login.dart';
 
 import 'package:todoease/screens/registration.dart';
 
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   SharedPreferences prefs = await SharedPreferences.getInstance();
+
+//   String? token = prefs.getString('token');
+//   print(
+//       'Retrieved token from SharedPreferences: $token'); // Add this line to print the retrieved token
+
+//   runApp(MyApp(
+//     token: token,
+//   ));
+// }
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
 
   String? token = prefs.getString('token');
-  print(
-      'Retrieved token from SharedPreferences: $token'); // Add this line to print the retrieved token
+  print('Retrieved token from SharedPreferences: $token');
 
-  runApp(MyApp(
-    token: token,
-  ));
+  runApp(
+    DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (context) => MyApp(token: token),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
