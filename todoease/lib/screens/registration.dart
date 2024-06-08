@@ -69,7 +69,7 @@ class _RegistrationState extends State<Registration> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const SizedBox(
-                      height: 50,
+                      height: 150,
                     ),
                     Text(
                       "Welcome!",
