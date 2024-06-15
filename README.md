@@ -1,4 +1,5 @@
 # ToDoEase - A Simple Todo Application
+---
 
 ### Overview:
 ToDoEase is a Flutter-based mobile application designed to help users manage their daily tasks efficiently. The application provides a simple and intuitive interface for users to add, update, and mark tasks as completed. It utilizes JWT (JSON Web Token) for user authentication and stores tokens securely using SharedPreferences to maintain user sessions. The app communicates with a backend server to handle user authentication and manage task data.
