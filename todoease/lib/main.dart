@@ -5,16 +5,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todoease/screens/home.dart';
 import 'package:todoease/screens/login.dart';
 
-import 'package:todoease/screens/registration.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
 
   String? token = prefs.getString('token');
   print(
-      'Retrieved token from SharedPreferences: $token'); // Add this line to print the retrieved token
-
+      'Retrieved token from SharedPreferences: $token'); 
   runApp(MyApp(
     token: token,
   ));
@@ -24,7 +21,7 @@ class MyApp extends StatelessWidget {
   final String? token;
   const MyApp({super.key, this.token});
 
-  // This widget is the root of your application.
+  
   @override
   Widget build(BuildContext context) {
     bool isTokenValid = token != null && !JwtDecoder.isExpired(token!);
